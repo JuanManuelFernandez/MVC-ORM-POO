@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>modelo module &mdash; MiProyecto 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=d45e8c67"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="vista module" href="vista.html" />
+    <link rel="prev" title="controlador module" href="controlador.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            MiProyecto
+          </a>
+              <div class="version">
+                0.0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenido:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="controlador.html">controlador module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">modelo module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#modelo.BaseModel"><code class="docutils literal notranslate"><span class="pre">BaseModel</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#modelo.BaseModel.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">BaseModel.DoesNotExist</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modelo.BaseModel.id"><code class="docutils literal notranslate"><span class="pre">BaseModel.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modelo.Empleados"><code class="docutils literal notranslate"><span class="pre">Empleados</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#modelo.Empleados.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Empleados.DoesNotExist</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modelo.Empleados.area"><code class="docutils literal notranslate"><span class="pre">Empleados.area</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modelo.Empleados.dias_trabajados"><code class="docutils literal notranslate"><span class="pre">Empleados.dias_trabajados</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modelo.Empleados.edad"><code class="docutils literal notranslate"><span class="pre">Empleados.edad</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modelo.Empleados.horas_diarias"><code class="docutils literal notranslate"><span class="pre">Empleados.horas_diarias</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modelo.Empleados.id"><code class="docutils literal notranslate"><span class="pre">Empleados.id</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modelo.Empleados.nombre"><code class="docutils literal notranslate"><span class="pre">Empleados.nombre</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modelo.Empleados.pago_por_hora"><code class="docutils literal notranslate"><span class="pre">Empleados.pago_por_hora</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modelo.Empleados.sueldo_mensual"><code class="docutils literal notranslate"><span class="pre">Empleados.sueldo_mensual</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modelo.OperacionL"><code class="docutils literal notranslate"><span class="pre">OperacionL</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#modelo.OperacionL.limpiar"><code class="docutils literal notranslate"><span class="pre">OperacionL.limpiar()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modelo.Operaciones"><code class="docutils literal notranslate"><span class="pre">Operaciones</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#modelo.Operaciones.alta"><code class="docutils literal notranslate"><span class="pre">Operaciones.alta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modelo.Operaciones.baja"><code class="docutils literal notranslate"><span class="pre">Operaciones.baja()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modelo.Operaciones.modificar"><code class="docutils literal notranslate"><span class="pre">Operaciones.modificar()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modelo.Regex"><code class="docutils literal notranslate"><span class="pre">Regex</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#modelo.Regex.validar_area"><code class="docutils literal notranslate"><span class="pre">Regex.validar_area()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modelo.Regex.validar_nombre"><code class="docutils literal notranslate"><span class="pre">Regex.validar_nombre()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modelo.actualizar_treeview"><code class="docutils literal notranslate"><span class="pre">actualizar_treeview()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modelo.cargar_datos"><code class="docutils literal notranslate"><span class="pre">cargar_datos()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vista.html">vista module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MiProyecto</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">modelo module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/modelo.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-modelo">
+<span id="modelo-module"></span><h1>modelo module<a class="headerlink" href="#module-modelo" title="Link to this heading"></a></h1>
+<dl class="simple">
+<dt>Modelo: </dt><dd><p>componentes que llevan la tarea de hacer funcionar la app (ejemplo “agregar empleados”, “hacer la suma del sueldo”, etc)</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="modelo.BaseModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modelo.</span></span><span class="sig-name descname"><span class="pre">BaseModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelo.html#BaseModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelo.BaseModel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>Creamos la base de datos</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modelo.BaseModel.DoesNotExist">
+<span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#modelo.BaseModel.DoesNotExist" title="Link to this definition"></a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModelDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modelo.BaseModel.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;AutoField:</span> <span class="pre">BaseModel.id&gt;</span></em><a class="headerlink" href="#modelo.BaseModel.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="modelo.Empleados">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modelo.</span></span><span class="sig-name descname"><span class="pre">Empleados</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelo.html#Empleados"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelo.Empleados" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#modelo.BaseModel" title="modelo.BaseModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></a></p>
+<p>Creamos la tabla y las columnas de la base de datos</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modelo.Empleados.DoesNotExist">
+<span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#modelo.Empleados.DoesNotExist" title="Link to this definition"></a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">EmpleadosDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modelo.Empleados.area">
+<span class="sig-name descname"><span class="pre">area</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;CharField:</span> <span class="pre">Empleados.area&gt;</span></em><a class="headerlink" href="#modelo.Empleados.area" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modelo.Empleados.dias_trabajados">
+<span class="sig-name descname"><span class="pre">dias_trabajados</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;FloatField:</span> <span class="pre">Empleados.dias_trabajados&gt;</span></em><a class="headerlink" href="#modelo.Empleados.dias_trabajados" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modelo.Empleados.edad">
+<span class="sig-name descname"><span class="pre">edad</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;FloatField:</span> <span class="pre">Empleados.edad&gt;</span></em><a class="headerlink" href="#modelo.Empleados.edad" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modelo.Empleados.horas_diarias">
+<span class="sig-name descname"><span class="pre">horas_diarias</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;FloatField:</span> <span class="pre">Empleados.horas_diarias&gt;</span></em><a class="headerlink" href="#modelo.Empleados.horas_diarias" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modelo.Empleados.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;AutoField:</span> <span class="pre">Empleados.id&gt;</span></em><a class="headerlink" href="#modelo.Empleados.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modelo.Empleados.nombre">
+<span class="sig-name descname"><span class="pre">nombre</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;CharField:</span> <span class="pre">Empleados.nombre&gt;</span></em><a class="headerlink" href="#modelo.Empleados.nombre" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modelo.Empleados.pago_por_hora">
+<span class="sig-name descname"><span class="pre">pago_por_hora</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;FloatField:</span> <span class="pre">Empleados.pago_por_hora&gt;</span></em><a class="headerlink" href="#modelo.Empleados.pago_por_hora" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modelo.Empleados.sueldo_mensual">
+<span class="sig-name descname"><span class="pre">sueldo_mensual</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;CharField:</span> <span class="pre">Empleados.sueldo_mensual&gt;</span></em><a class="headerlink" href="#modelo.Empleados.sueldo_mensual" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="modelo.OperacionL">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modelo.</span></span><span class="sig-name descname"><span class="pre">OperacionL</span></span><a class="reference internal" href="_modules/modelo.html#OperacionL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelo.OperacionL" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="modelo.OperacionL.limpiar">
+<span class="sig-name descname"><span class="pre">limpiar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nombre</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edad</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">area</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">horas_diarias</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pago_por_hora</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dias_trabajados</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelo.html#OperacionL.limpiar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelo.OperacionL.limpiar" title="Link to this definition"></a></dt>
+<dd><p>Esta función se utiliza para limpiar los campos entry que se encuntran en nuestra ventana de tkinter</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="modelo.Operaciones">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modelo.</span></span><span class="sig-name descname"><span class="pre">Operaciones</span></span><a class="reference internal" href="_modules/modelo.html#Operaciones"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelo.Operaciones" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="modelo.Operaciones.alta">
+<span class="sig-name descname"><span class="pre">alta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nombre</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edad</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">area</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">horas_diarias</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pago_por_hora</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dias_trabajados</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sueldo_men</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">planilla</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelo.html#Operaciones.alta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelo.Operaciones.alta" title="Link to this definition"></a></dt>
+<dd><p>Esta función nos permite cargar los datos ingresados en la base de datos y de esa manera guardarlos.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modelo.Operaciones.baja">
+<span class="sig-name descname"><span class="pre">baja</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">planilla</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelo.html#Operaciones.baja"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelo.Operaciones.baja" title="Link to this definition"></a></dt>
+<dd><p>Esta función nos permite borrar un elemento de la tabla.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modelo.Operaciones.modificar">
+<span class="sig-name descname"><span class="pre">modificar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nombre</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edad</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">area</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">horas_diarias</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pago_por_hora</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dias_trabajados</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">planilla</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelo.html#Operaciones.modificar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelo.Operaciones.modificar" title="Link to this definition"></a></dt>
+<dd><p>Esta función nos permite modificar los elementos ingresados en la tabla en caso de equivocacion.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="modelo.Regex">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modelo.</span></span><span class="sig-name descname"><span class="pre">Regex</span></span><a class="reference internal" href="_modules/modelo.html#Regex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelo.Regex" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="modelo.Regex.validar_area">
+<span class="sig-name descname"><span class="pre">validar_area</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">area</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelo.html#Regex.validar_area"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelo.Regex.validar_area" title="Link to this definition"></a></dt>
+<dd><p>Esta función valida el campo area, denegando asi el ingreso de numeros en el campo area.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modelo.Regex.validar_nombre">
+<span class="sig-name descname"><span class="pre">validar_nombre</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nombre</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelo.html#Regex.validar_nombre"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelo.Regex.validar_nombre" title="Link to this definition"></a></dt>
+<dd><p>Esta función valida el campo de nombre, denegando asi el ingreso de numeros en el campo nombre.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="modelo.actualizar_treeview">
+<span class="sig-prename descclassname"><span class="pre">modelo.</span></span><span class="sig-name descname"><span class="pre">actualizar_treeview</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mytreeview</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelo.html#actualizar_treeview"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelo.actualizar_treeview" title="Link to this definition"></a></dt>
+<dd><p>Esta función actualiza la planilla(treeview) que tenemos en nuestra ventana de tkinter.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="modelo.cargar_datos">
+<span class="sig-prename descclassname"><span class="pre">modelo.</span></span><span class="sig-name descname"><span class="pre">cargar_datos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">treeview</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelo.html#cargar_datos"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelo.cargar_datos" title="Link to this definition"></a></dt>
+<dd><p>Esta función nos permite cargar los datos ingresados con anterioridad en la base de datos.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="controlador.html" class="btn btn-neutral float-left" title="controlador module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="vista.html" class="btn btn-neutral float-right" title="vista module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Juan Manuel.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

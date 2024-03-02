@@ -1,16 +1,18 @@
-#vista
+"""
+Vista: 
+        componentes que se muestran en pantalla (ejemplo botones, inputs, selectores, etc)
+"""
 from tkinter import *
 from tkinter import ttk
-import tkinter as tk
+from modelo import *
 from modelo import Operaciones
 from modelo import OperacionL
 
-"""Vista: componentes que se muestran en pantalla (ejemplo botones, inputs, selectores, etc)"""
-
 #Creacion de la ventana con sus Labels y Entrys
-
 class CreacionVentana():
-
+    """
+    Dentro de la clase se encuentra la creación de nuestra ventana.
+    """
     def __init__(self, master):
         
         self.master = master
@@ -19,22 +21,23 @@ class CreacionVentana():
         self.objlmp = OperacionL()
 
         self.master.title("Carga de datos de empleados")
+        master.config(bg='grey')
         master.resizable(False, False)
 
-        self.titulo = Label(master, text="Ingrese sus datos", bg="green", fg="thistle1", height=2, width=80)
+        self.titulo = Label(master, text="Ingrese sus datos", bg="green", fg="thistle1", height=2, width=80, font=("Helvetica", 10, "bold"))
         self.titulo.grid(row=0, column=0, columnspan=4, padx=1, pady=1, sticky="we")
 
-        self.nombre_campo = Label(master, text="Nombre")
+        self.nombre_campo = Label(master, text="Nombre", bg="grey", fg="white", font=("Helvetica", 12, "bold"))
         self.nombre_campo.grid(row=1, column=0, sticky= "w")
-        self.edad_campo = Label(master, text="Edad")
+        self.edad_campo = Label(master, text="Edad", bg="grey", fg="white", font=("Helvetica", 12, "bold"))
         self.edad_campo.grid(row=2, column=0, sticky= "w")
-        self.area_campo = Label(master, text="Area")
+        self.area_campo = Label(master, text="Area", bg="grey", fg="white", font=("Helvetica", 12, "bold"))
         self.area_campo.grid(row=3, column=0, sticky= "w")
-        self.horas_diarias_campo = Label(master, text="Horas diarias")
+        self.horas_diarias_campo = Label(master, text="Horas diarias", bg="grey", fg="white", font=("Helvetica", 12, "bold"))
         self.horas_diarias_campo.grid(row=4, column=0, sticky= "w")
-        self.pago_hr_campo = Label(master, text="Pago por hora")
+        self.pago_hr_campo = Label(master, text="Pago por hora", bg="grey", fg="white", font=("Helvetica", 12, "bold"))
         self.pago_hr_campo.grid(row=5, column=0, sticky= "w")
-        self.dias_trabajados_campo = Label(master, text="Dias trabajados en el mes")
+        self.dias_trabajados_campo = Label(master, text="Dias trabajados en el mes", bg="grey", fg="white", font=("Helvetica", 12, "bold",))
         self.dias_trabajados_campo.grid(row= 6, column=0, sticky= "w")
 
         self.a_val, self.b_val, self.c_val, self.d_val, self.e_val, self.f_val, self.g_val = StringVar(), IntVar(), StringVar(), IntVar(), IntVar(), IntVar(), IntVar()
@@ -79,21 +82,27 @@ class CreacionVentana():
 
         #Creacion de los botones llamando a las funciones alta, baja, modificar desde el archivo modelo
 
-        boton_alta = Button(master, text="Alta", width=self.ancho, fg= "green", command=lambda: self.objetop.alta(self.a_val, self.b_val, self.c_val, self.d_val, self.e_val, self.f_val, self.g_val, self.planilla))
+        boton_alta = Button(master, text="Alta", width=self.ancho, bg="grey", fg= "#7FFF00", font=("Helvetica", 9, "bold"), command=lambda: self.objetop.alta(self.a_val, self.b_val, self.c_val, self.d_val, self.e_val, self.f_val, self.g_val, self.planilla))
         boton_alta.grid(row=8, column=1)
 
-        boton_baja = Button(master, text="Baja", width=self.ancho, fg= "red", command=lambda: self.objetop.baja(self.planilla))
+        boton_baja = Button(master, text="Baja", width=self.ancho, bg="grey", fg= "#800000", font=("Helvetica", 9, "bold"), command=lambda: self.objetop.baja(self.planilla))
         boton_baja.grid(row=9, column=1)
 
-        boton_modificar = Button(master, text="Modificar", width=self.ancho, fg="purple", command=lambda: self.objetop.modificar(self.a_val, self.b_val, self.c_val, self.d_val, self.e_val, self.f_val, self.planilla))
+        boton_modificar = Button(master, text="Modificar", width=self.ancho, bg="grey", fg="#4B0082", font=("Helvetica", 9, "bold"), command=lambda: self.objetop.modificar(self.a_val, self.b_val, self.c_val, self.d_val, self.e_val, self.f_val, self.planilla))
         boton_modificar.grid(row=11, column=1)
         
-        boton_limpiar = Button(master, text="Limpiar Campos", width=self.ancho, command=lambda: self.objlmp.limpiar(self.a_val, self.b_val, self.c_val, self.d_val, self.e_val, self.f_val))
+        boton_limpiar = Button(master, text="Limpiar Campos", width=self.ancho, bg="grey", fg="#FFFFF0", font=("Helvetica", 9, "bold"), command=lambda: self.objlmp.limpiar(self.a_val, self.b_val, self.c_val, self.d_val, self.e_val, self.f_val))
         boton_limpiar.grid(row=11, column=0)
+
+        boton_cargar = Button(master, text="Cargar datos", width=self.ancho, bg="grey", fg="#FFFFF0", font=("Helvetica", 9, "bold"), command=lambda: cargar_datos(self.planilla))
+        boton_cargar.grid(row=11, column=2)
 
         self.planilla.bind("<Double-1>", self.on_double_click)
 
     def on_double_click(self, event):
+        """
+        Esta función nos permite cargar los datos que se muestran en la planilla(treeview) en los campos entry con un doble click.
+        """
         item = self.planilla.selection()[0]
         nombre, edad, area, horas_diarias, pago_por_hora, dias_trabajados = self.planilla.item(item, "values")
         self.a_val.set(nombre)

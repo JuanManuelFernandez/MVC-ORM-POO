@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>modelo &mdash; MiProyecto 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            MiProyecto
+          </a>
+              <div class="version">
+                0.0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenido:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../controlador.html">controlador module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelo.html">modelo module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vista.html">vista module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MiProyecto</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">modelo</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for modelo</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Modelo: </span>
+<span class="sd">        componentes que llevan la tarea de hacer funcionar la app (ejemplo “agregar empleados”, “hacer la suma del sueldo”, etc)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">messagebox</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">peewee</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1">#Creacion de la db y tabla</span>
+
+<span class="n">database</span> <span class="o">=</span> <span class="n">SqliteDatabase</span><span class="p">(</span><span class="s2">&quot;mybs.db&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BaseModel">
+<a class="viewcode-back" href="../modelo.html#modelo.BaseModel">[docs]</a>
+<span class="k">class</span> <span class="nc">BaseModel</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creamos la base de datos</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">database</span> <span class="o">=</span> <span class="n">database</span></div>
+
+
+<div class="viewcode-block" id="Empleados">
+<a class="viewcode-back" href="../modelo.html#modelo.Empleados">[docs]</a>
+<span class="k">class</span> <span class="nc">Empleados</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creamos la tabla y las columnas de la base de datos</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nombre</span> <span class="o">=</span> <span class="n">CharField</span><span class="p">(</span><span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">edad</span> <span class="o">=</span> <span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">area</span> <span class="o">=</span> <span class="n">CharField</span><span class="p">()</span>
+    <span class="n">horas_diarias</span> <span class="o">=</span> <span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">pago_por_hora</span> <span class="o">=</span> <span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">dias_trabajados</span> <span class="o">=</span> <span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">sueldo_mensual</span> <span class="o">=</span> <span class="n">CharField</span><span class="p">()</span></div>
+
+    
+<span class="n">database</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">database</span><span class="o">.</span><span class="n">create_tables</span><span class="p">([</span><span class="n">Empleados</span><span class="p">])</span>
+
+<span class="c1">#Definicion de clases y funciones </span>
+
+<div class="viewcode-block" id="OperacionL">
+<a class="viewcode-back" href="../modelo.html#modelo.OperacionL">[docs]</a>
+<span class="k">class</span> <span class="nc">OperacionL</span><span class="p">():</span>
+<div class="viewcode-block" id="OperacionL.limpiar">
+<a class="viewcode-back" href="../modelo.html#modelo.OperacionL.limpiar">[docs]</a>
+    <span class="k">def</span> <span class="nf">limpiar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">edad</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">horas_diarias</span><span class="p">,</span> <span class="n">pago_por_hora</span><span class="p">,</span> <span class="n">dias_trabajados</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Esta función se utiliza para limpiar los campos entry que se encuntran en nuestra ventana de tkinter</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">nombre</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">edad</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">area</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">horas_diarias</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">pago_por_hora</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dias_trabajados</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span></div>
+</div>
+
+
+<div class="viewcode-block" id="Regex">
+<a class="viewcode-back" href="../modelo.html#modelo.Regex">[docs]</a>
+<span class="k">class</span> <span class="nc">Regex</span><span class="p">():</span>
+<div class="viewcode-block" id="Regex.validar_nombre">
+<a class="viewcode-back" href="../modelo.html#modelo.Regex.validar_nombre">[docs]</a>
+    <span class="k">def</span> <span class="nf">validar_nombre</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Esta función valida el campo de nombre, denegando asi el ingreso de numeros en el campo nombre.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">regx</span> <span class="o">=</span> <span class="n">nombre</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="n">patron</span> <span class="o">=</span> <span class="s2">&quot;^[A-Za-záéíóú]*$&quot;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">patron</span><span class="p">,</span> <span class="n">regx</span><span class="p">)):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Todo se encuentra correcto en el campo de texto&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="s2">&quot;No se pueden ingresar numeros en el campo nombre&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+        
+<div class="viewcode-block" id="Regex.validar_area">
+<a class="viewcode-back" href="../modelo.html#modelo.Regex.validar_area">[docs]</a>
+    <span class="k">def</span> <span class="nf">validar_area</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">area</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Esta función valida el campo area, denegando asi el ingreso de numeros en el campo area.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">regx_2</span> <span class="o">=</span> <span class="n">area</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="n">patron</span> <span class="o">=</span> <span class="s2">&quot;^[A-Za-záéíóú]*$&quot;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">patron</span><span class="p">,</span> <span class="n">regx_2</span><span class="p">)):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Todo se encuentra correcto en el campo de texto&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="s2">&quot;No se pueden ingresar numeros en el campo area&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>   </div>
+</div>
+
+
+<div class="viewcode-block" id="Operaciones">
+<a class="viewcode-back" href="../modelo.html#modelo.Operaciones">[docs]</a>
+<span class="k">class</span> <span class="nc">Operaciones</span><span class="p">():</span>
+<div class="viewcode-block" id="Operaciones.alta">
+<a class="viewcode-back" href="../modelo.html#modelo.Operaciones.alta">[docs]</a>
+    <span class="k">def</span> <span class="nf">alta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">edad</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">horas_diarias</span><span class="p">,</span> <span class="n">pago_por_hora</span><span class="p">,</span> <span class="n">dias_trabajados</span><span class="p">,</span> <span class="n">sueldo_men</span><span class="p">,</span> <span class="n">planilla</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Esta función nos permite cargar los datos ingresados en la base de datos y de esa manera guardarlos.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">regx</span> <span class="o">=</span> <span class="n">Regex</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">regx</span><span class="o">.</span><span class="n">validar_nombre</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">regx</span><span class="o">.</span><span class="n">validar_area</span><span class="p">(</span><span class="n">area</span><span class="p">):</span>
+            <span class="k">return</span>
+        
+        <span class="n">empleado_existente</span> <span class="o">=</span> <span class="n">Empleados</span><span class="o">.</span><span class="n">select</span><span class="p">()</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Empleados</span><span class="o">.</span><span class="n">nombre</span> <span class="o">==</span> <span class="n">nombre</span><span class="o">.</span><span class="n">get</span><span class="p">())</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">empleado_existente</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="s2">&quot;Ya existe un empleado con ese nombre en la base de datos.&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">edad_val</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">edad</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+            <span class="n">horas_diarias_val</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">horas_diarias</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+            <span class="n">pago_por_hora_val</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">pago_por_hora</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+            <span class="n">dias_trabajados_val</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">dias_trabajados</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">edad_val</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">horas_diarias_val</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">pago_por_hora_val</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">dias_trabajados_val</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Edad, Horas diarias, pago por hora, y dias trabajados deben ser valores enteros y no pueden estar vacios.&quot;</span><span class="p">)</span>
+                        
+            <span class="n">sueldo_men</span> <span class="o">=</span> <span class="p">(</span><span class="n">horas_diarias_val</span> <span class="o">*</span> <span class="n">pago_por_hora_val</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">dias_trabajados_val</span><span class="p">)</span>
+            <span class="n">empleado</span> <span class="o">=</span> <span class="n">Empleados</span><span class="p">()</span>
+            <span class="n">empleado</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="n">nombre</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+            <span class="n">empleado</span><span class="o">.</span><span class="n">edad</span> <span class="o">=</span> <span class="n">edad_val</span>
+            <span class="n">empleado</span><span class="o">.</span><span class="n">area</span> <span class="o">=</span> <span class="n">area</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+            <span class="n">empleado</span><span class="o">.</span><span class="n">horas_diarias</span> <span class="o">=</span> <span class="n">horas_diarias_val</span>
+            <span class="n">empleado</span><span class="o">.</span><span class="n">pago_por_hora</span> <span class="o">=</span> <span class="n">pago_por_hora_val</span>
+            <span class="n">empleado</span><span class="o">.</span><span class="n">dias_trabajados</span> <span class="o">=</span> <span class="n">dias_trabajados_val</span>
+            <span class="n">empleado</span><span class="o">.</span><span class="n">sueldo_mensual</span> <span class="o">=</span> <span class="n">sueldo_men</span>
+            <span class="n">empleado</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+            <span class="n">actualizar_treeview</span><span class="p">(</span><span class="n">planilla</span><span class="p">)</span>
+            <span class="n">OperacionL</span><span class="o">.</span><span class="n">limpiar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">edad</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">horas_diarias</span><span class="p">,</span> <span class="n">pago_por_hora</span><span class="p">,</span> <span class="n">dias_trabajados</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Exito&quot;</span><span class="p">,</span> <span class="s2">&quot;Empleado agregado.&quot;</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="Operaciones.baja">
+<a class="viewcode-back" href="../modelo.html#modelo.Operaciones.baja">[docs]</a>
+    <span class="k">def</span> <span class="nf">baja</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">planilla</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Esta función nos permite borrar un elemento de la tabla.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">valor</span> <span class="o">=</span> <span class="n">planilla</span><span class="o">.</span><span class="n">selection</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">planilla</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>    
+        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span>
+        
+        <span class="n">borrar</span> <span class="o">=</span> <span class="n">Empleados</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">Empleados</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">])</span>
+        <span class="n">borrar</span><span class="o">.</span><span class="n">delete_instance</span><span class="p">()</span>
+
+        <span class="n">planilla</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span>
+
+        <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Éxito&quot;</span><span class="p">,</span> <span class="s2">&quot;Empleado dado de baja.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Operaciones.modificar">
+<a class="viewcode-back" href="../modelo.html#modelo.Operaciones.modificar">[docs]</a>
+    <span class="k">def</span> <span class="nf">modificar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">edad</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">horas_diarias</span><span class="p">,</span> <span class="n">pago_por_hora</span><span class="p">,</span> <span class="n">dias_trabajados</span><span class="p">,</span> <span class="n">planilla</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Esta función nos permite modificar los elementos ingresados en la tabla en caso de equivocacion.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">valor</span> <span class="o">=</span> <span class="n">planilla</span><span class="o">.</span><span class="n">selection</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">planilla</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>    
+        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span>
+        
+        <span class="n">regx_m</span> <span class="o">=</span> <span class="n">Regex</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">regx_m</span><span class="o">.</span><span class="n">validar_nombre</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">regx_m</span><span class="o">.</span><span class="n">validar_area</span><span class="p">(</span><span class="n">area</span><span class="p">):</span>
+            <span class="k">return</span>   
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">edad_nuevo</span> <span class="o">=</span> <span class="n">edad</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+            <span class="n">horas_diarias_nuevo</span> <span class="o">=</span> <span class="n">horas_diarias</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+            <span class="n">pago_por_hora_nuevo</span> <span class="o">=</span> <span class="n">pago_por_hora</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+            <span class="n">dias_trabajados_nuevo</span> <span class="o">=</span> <span class="n">dias_trabajados</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">edad_nuevo</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">horas_diarias_nuevo</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">pago_por_hora_nuevo</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">dias_trabajados_nuevo</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Debe realizar los cambios en todos los campos o que no esten vacios.&quot;</span><span class="p">)</span>
+            
+            <span class="n">sueldo_men</span> <span class="o">=</span> <span class="p">(</span><span class="n">horas_diarias_nuevo</span> <span class="o">*</span> <span class="n">pago_por_hora_nuevo</span><span class="p">)</span> <span class="o">*</span> <span class="n">dias_trabajados_nuevo</span>
+
+            <span class="n">actualizar_datos</span> <span class="o">=</span> <span class="n">Empleados</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">nombre</span><span class="o">=</span><span class="n">nombre</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> 
+                                            <span class="n">edad</span><span class="o">=</span><span class="n">edad_nuevo</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="n">area</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> 
+                                            <span class="n">horas_diarias</span><span class="o">=</span><span class="n">horas_diarias_nuevo</span><span class="p">,</span> <span class="n">pago_por_hora</span><span class="o">=</span><span class="n">pago_por_hora_nuevo</span><span class="p">,</span> 
+                                            <span class="n">dias_trabajados</span><span class="o">=</span><span class="n">dias_trabajados_nuevo</span><span class="p">,</span> <span class="n">sueldo_mensual</span><span class="o">=</span><span class="n">sueldo_men</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Empleados</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">])</span>
+            <span class="n">actualizar_datos</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+            
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Éxito&quot;</span><span class="p">,</span> <span class="s2">&quot;Empleado actualizado con éxito&quot;</span><span class="p">)</span>
+            <span class="n">actualizar_treeview</span><span class="p">(</span><span class="n">planilla</span><span class="p">)</span>
+            <span class="n">OperacionL</span><span class="o">.</span><span class="n">limpiar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">edad</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">horas_diarias</span><span class="p">,</span> <span class="n">pago_por_hora</span><span class="p">,</span> <span class="n">dias_trabajados</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">a</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span></div>
+</div>
+
+
+<div class="viewcode-block" id="actualizar_treeview">
+<a class="viewcode-back" href="../modelo.html#modelo.actualizar_treeview">[docs]</a>
+<span class="k">def</span> <span class="nf">actualizar_treeview</span><span class="p">(</span><span class="n">mytreeview</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Esta función actualiza la planilla(treeview) que tenemos en nuestra ventana de tkinter.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">records</span> <span class="o">=</span> <span class="n">mytreeview</span><span class="o">.</span><span class="n">get_children</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+        <span class="n">mytreeview</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>   
+
+    <span class="k">for</span> <span class="n">fila</span> <span class="ow">in</span> <span class="n">Empleados</span><span class="o">.</span><span class="n">select</span><span class="p">():</span>
+        <span class="n">mytreeview</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">fila</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="p">(</span><span class="n">fila</span><span class="o">.</span><span class="n">nombre</span><span class="p">,</span> <span class="n">fila</span><span class="o">.</span><span class="n">edad</span><span class="p">,</span> <span class="n">fila</span><span class="o">.</span><span class="n">area</span><span class="p">,</span> <span class="n">fila</span><span class="o">.</span><span class="n">horas_diarias</span><span class="p">,</span> <span class="n">fila</span><span class="o">.</span><span class="n">pago_por_hora</span><span class="p">,</span> <span class="n">fila</span><span class="o">.</span><span class="n">dias_trabajados</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="cargar_datos">
+<a class="viewcode-back" href="../modelo.html#modelo.cargar_datos">[docs]</a>
+<span class="k">def</span> <span class="nf">cargar_datos</span><span class="p">(</span><span class="n">treeview</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Esta función nos permite cargar los datos ingresados con anterioridad en la base de datos.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">treeview</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="o">*</span><span class="n">treeview</span><span class="o">.</span><span class="n">get_children</span><span class="p">())</span>
+
+    <span class="n">grabado</span> <span class="o">=</span> <span class="n">Empleados</span><span class="o">.</span><span class="n">select</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">grabado</span><span class="p">:</span>
+        <span class="n">treeview</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">record</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">nombre</span><span class="p">,</span> <span class="n">record</span><span class="o">.</span><span class="n">edad</span><span class="p">,</span> <span class="n">record</span><span class="o">.</span><span class="n">area</span><span class="p">,</span> <span class="n">record</span><span class="o">.</span><span class="n">horas_diarias</span><span class="p">,</span> <span class="n">record</span><span class="o">.</span><span class="n">pago_por_hora</span><span class="p">,</span> <span class="n">record</span><span class="o">.</span><span class="n">dias_trabajados</span><span class="p">))</span>
+    <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Exito&quot;</span><span class="p">,</span> <span class="s2">&quot;Datos cargados&quot;</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Juan Manuel.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

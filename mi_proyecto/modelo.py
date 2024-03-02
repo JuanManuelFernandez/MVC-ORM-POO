@@ -1,19 +1,26 @@
-#modelo
+"""
+Modelo: 
+        componentes que llevan la tarea de hacer funcionar la app (ejemplo “agregar empleados”, “hacer la suma del sueldo”, etc)
+"""
 from tkinter import messagebox
 import re
 from peewee import *
-
-"""Modelo: componentes que llevan la tarea de hacer funcionar la app (ejemplo “agregar empleados”, “hacer la suma del sueldo”, etc)"""
 
 #Creacion de la db y tabla
 
 database = SqliteDatabase("mybs.db")
 
 class BaseModel(Model):
+    """
+    Creamos la base de datos
+    """
     class Meta:
         database = database
 
 class Empleados(BaseModel):
+    """
+    Creamos la tabla y las columnas de la base de datos
+    """
     nombre = CharField(unique=True)
     edad = FloatField()
     area = CharField()
@@ -29,6 +36,9 @@ database.create_tables([Empleados])
 
 class OperacionL():
     def limpiar(self, nombre, edad, area, horas_diarias, pago_por_hora, dias_trabajados):
+        """
+        Esta función se utiliza para limpiar los campos entry que se encuntran en nuestra ventana de tkinter
+        """
         nombre.set("")
         edad.set("")
         area.set("")
@@ -37,21 +47,39 @@ class OperacionL():
         dias_trabajados.set("0")
 
 class Regex():
-    def validar(self, nombre, area):
+    def validar_nombre(self, nombre):
+        """
+        Esta función valida el campo de nombre, denegando asi el ingreso de numeros en el campo nombre.
+        """
         regx = nombre.get()
-        regx_2 = area.get()
         patron = "^[A-Za-záéíóú]*$"
-        if (re.match(patron, regx) and re.match(patron, regx_2)):
-            print("Todo se encuentra correcto en los campos de texto")
+        if (re.match(patron, regx)):
+            print("Todo se encuentra correcto en el campo de texto")
             return True
         else:
-            messagebox.showerror("Error", "No se pueden ingresar numeros en los campos nombre y area")
+            messagebox.showerror("Error", "No se pueden ingresar numeros en el campo nombre")
             return False
+        
+    def validar_area(self, area):
+        """
+        Esta función valida el campo area, denegando asi el ingreso de numeros en el campo area.
+        """
+        regx_2 = area.get()
+        patron = "^[A-Za-záéíóú]*$"
+        if (re.match(patron, regx_2)):
+            print("Todo se encuentra correcto en el campo de texto")
+            return True
+        else:
+            messagebox.showerror("Error", "No se pueden ingresar numeros en el campo area")
+            return False   
 
 class Operaciones():
     def alta(self, nombre, edad, area, horas_diarias, pago_por_hora, dias_trabajados, sueldo_men, planilla):
+        """
+        Esta función nos permite cargar los datos ingresados en la base de datos y de esa manera guardarlos.
+        """
         regx = Regex()
-        if not regx.validar(nombre, area):
+        if not regx.validar_nombre(nombre) or not regx.validar_area(area):
             return
         
         empleado_existente = Empleados.select().where(Empleados.nombre == nombre.get()).first()
@@ -90,6 +118,9 @@ class Operaciones():
             messagebox.showinfo("Exito", "Empleado agregado.")
     
     def baja(self, planilla):
+        """
+        Esta función nos permite borrar un elemento de la tabla.
+        """
         valor = planilla.selection()
         print(valor)
         item = planilla.item(valor)
@@ -104,6 +135,9 @@ class Operaciones():
         messagebox.showinfo("Éxito", "Empleado dado de baja.")
 
     def modificar(self, nombre, edad, area, horas_diarias, pago_por_hora, dias_trabajados, planilla):
+        """
+        Esta función nos permite modificar los elementos ingresados en la tabla en caso de equivocacion.
+        """
         valor = planilla.selection()
         print(valor)
         item = planilla.item(valor)
@@ -111,7 +145,7 @@ class Operaciones():
         print(item['text'])
         
         regx_m = Regex()
-        if not regx_m.validar(nombre, area):
+        if not regx_m.validar_nombre(nombre) or not regx_m.validar_area(area):
             return   
 
         try:
@@ -139,9 +173,24 @@ class Operaciones():
             messagebox.showerror("Error", a)
 
 def actualizar_treeview(mytreeview):
+    """
+    Esta función actualiza la planilla(treeview) que tenemos en nuestra ventana de tkinter.
+    """
     records = mytreeview.get_children()
     for element in records:
         mytreeview.delete(element)   
 
     for fila in Empleados.select():
         mytreeview.insert("", 0, text=fila.id, values=(fila.nombre, fila.edad, fila.area, fila.horas_diarias, fila.pago_por_hora, fila.dias_trabajados))
+
+def cargar_datos(treeview):
+    """
+    Esta función nos permite cargar los datos ingresados con anterioridad en la base de datos.
+    """
+    treeview.delete(*treeview.get_children())
+
+    grabado = Empleados.select()
+
+    for record in grabado:
+        treeview.insert("", "end", text=record.id, values=(record.nombre, record.edad, record.area, record.horas_diarias, record.pago_por_hora, record.dias_trabajados))
+    messagebox.showinfo("Exito", "Datos cargados")
